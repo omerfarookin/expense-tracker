@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #111315;
+    color: #f2f4f3;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+.topbar {
+    margin-bottom: 32px;
+}
+
+.topbar h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+}
+
+.topbar p,
+.label,
+.transactions p {
+    color: #969c9a;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.card {
+    padding: 24px;
+    background: #1b1e20;
+    border: 1px solid #2a2e30;
+    border-radius: 14px;
+}
+
+.card h2 {
+    margin: 12px 0 0;
+    font-size: 28px;
+}
+
+.label {
+    margin: 0;
+    font-size: 14px;
+}
+
+.summary .card:first-child h2 {
+    color: #79d6a3;
+}
+
+.transactions h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+@media (max-width: 650px) {
+    .summary {
+        grid-template-columns: 1fr;
+    }
+}
+.add-expense {
+    margin-bottom: 20px;
+}
+
+.add-expense h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+}
+
+.add-expense form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.add-expense label {
+    color: #b6bcba;
+    font-size: 14px;
+}
+
+.add-expense input {
+    width: 100%;
+    padding: 12px;
+    color: #f2f4f3;
+    background: #111315;
+    border: 1px solid #363b3d;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.add-expense button {
+    align-self: flex-start;
+    padding: 11px 16px;
+    color: #111315;
+    background: #79d6a3;
+    border: 0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .add-expense form {
+        grid-template-columns: 1fr;
+    }
+
+    .add-expense button {
+        grid-column: auto;
+    }
+}
+.transactions h2 {
+    margin-bottom: 12px;
+}
+
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #2a2e30;
+}
+
+.transaction-row:last-child {
+    border-bottom: 0;
+}
+
+.transaction-row form {
+    margin: 0;
+}
+
+.transaction-row button {
+    padding: 8px 12px;
+    color: #f2c4c4;
+    background: #3a2424;
+    border: 1px solid #5c3434;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.transaction-row button:hover {
+    background: #4a2b2b;
+}
+.summary .card form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.summary .card form label {
+    grid-column: 1 / -1;
+    color: #b6bcba;
+    font-size: 14px;
+}
+
+.summary .card form input {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+    color: #f2f4f3;
+    background: #111315;
+    border: 1px solid #363b3d;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.summary .card form button {
+    padding: 10px 12px;
+    color: #111315;
+    background: #79d6a3;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.add-expense select {
+    width: 100%;
+    padding: 12px;
+    color: #f2f4f3;
+    background: #111315;
+    border: 1px solid #363b3d;
+    border-radius: 8px;
+    font-size: 15px;
+}
+.transactions > form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.transactions > form label {
+    color: #b6bcba;
+}
+
+.transactions > form input[type="month"] {
+    padding: 10px 12px;
+    color: #f2f4f3;
+    background: #111315;
+    border: 1px solid #363b3d;
+    border-radius: 8px;
+}
+
+.transactions > form button {
+    padding: 10px 12px;
+    color: #111315;
+    background: #79d6a3;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}

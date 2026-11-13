@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="dashboard">
+        <header class="topbar">
+            <h1>Expense Tracker</h1>
+            <p>Keep an eye on your spending.</p>
+        </header>
+
+        <section class="summary">
+            <article class="card">
+    <p class="label">Total balance</p>
+    <h2>₹{{ "%.2f"|format(balance) }}</h2>
+
+    <form action="{{ url_for('update_starting_balance') }}" method="POST">
+        <label for="starting_balance">Starting balance</label>
+        <input
+            id="starting_balance"
+            name="starting_balance"
+            type="number"
+            step="0.01"
+            min="0"
+            value="{{ "%.2f"|format(starting_balance) }}"
+            required
+        >
+        <button type="submit">Update starting balance</button>
+    </form>
+</article>
+
+            <article class="card">
+    <p class="label">Income</p>
+    <h2>₹{{ "%.2f"|format(income) }}</h2>
+
+    <form action="{{ url_for('update_income') }}" method="POST">
+        <label for="income">Change income</label>
+        <input
+            id="income"
+            name="income"
+            type="number"
+            step="0.01"
+            min="0"
+            value="{{ "%.2f"|format(income) }}"
+            required
+        >
+        <button type="submit">Update income</button>
+    </form>
+</article>
+            <article class="card">
+                <p class="label">Expenses</p>
+                <h2>₹{{ "%.2f"|format(total_expenses) }}</h2>
+            </article>
+        </section>
+
+        <section class="card add-expense">
+    <h2>Add an expense</h2>
+
+    <form method="POST">
+        <label for="expense-name">What was it for?</label>
+        <input id="expense-name" name="name" type="text" placeholder="e.g. Groceries" required>
+        <label for="expense-category">Category</label>
+<select id="expense-category" name="category" required>
+    <option value="Food">Food</option>
+    <option value="Transport">Transport</option>
+    <option value="Bills">Bills</option>
+    <option value="Shopping">Shopping</option>
+    <option value="Other">Other</option>
+</select>
+        <label for="expense-date">Date</label>
+<input id="expense-date" name="date" type="date" required>
+        <label for="expense-amount">Amount</label>
+        <input id="expense-amount" name="amount" type="number" step="0.01" min="0.01" placeholder="e.g. 25.00" required>
+
+        <button type="submit">Add expense</button>
+    </form>
+</section>
+
+<section class="card transactions">
+    <h2>Recent transactions</h2>
+<form method="GET">
+    <label for="month">Choose month</label>
+    <input
+        id="month"
+        name="month"
+        type="month"
+        value="{{ selected_month }}"
+        required
+    >
+    <button type="submit">View month</button>
+</form>
+
+<p>Spent this month: ₹{{ "%.2f"|format(monthly_expenses) }}</p>
+    {% if expenses %}
+        {% for expense in expenses %}
+            <div class="transaction-row">
+                <span>{{ expense.name }} · {{ expense.category }} · {{ expense.date }} — ₹{{ "%.2f"|format(expense.amount) }}</span>
+
+                <form action="{{ url_for('delete_expense', expense_id=expense.id) }}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Your recent expenses will appear here.</p>
+    {% endif %}
+</section>
+    </main>
+</body>
+</html>
